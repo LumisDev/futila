@@ -1,0 +1,64 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "base",
+            "displayName": "Basic configuration",
+            "description": "Basic config with Clang and Ninja",
+            "generator": "Ninja",
+            "hidden": true,
+            "binaryDir":"${sourceDir}/build/${presetName}",
+            "installDir":"${sourceDir}/install/${presetName}",
+            "toolchainFile":"./vcpkg/scripts/buildsystems/vcpkg.cmake",
+            "cacheVariables": {
+                "VCPKG_MANIFEST_MODE" : true,
+                "VCPKG_MANIFEST_DIR": {
+                    "value": "${sourceDir}",
+                    "type": "FILEPATH"
+                },
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_CXX_COMPILER":"clang++"
+            }
+        },
+        {
+            "name": "x64",
+            "architecture": {
+              "value": "x64",
+              "strategy": "external"
+            },
+            "cacheVariables": {
+              "VCPKG_TARGET_TRIPLET": "x64-windows"
+            },
+            "hidden": true
+        },
+        {
+            "name": "x86",
+            "architecture": {
+              "value": "x86",
+              "strategy": "external"
+            },
+            "cacheVariables": {
+              "VCPKG_TARGET_TRIPLET": "x86-windows"
+            },
+            "hidden": true
+        },
+        {
+            "name": "Debug",
+            "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug", "CMAKE_EXPORT_COMPILE_COMMANDS": true },
+            "hidden": true
+        },
+        {
+            "name": "Release",
+            "cacheVariables":
+            {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+                "CMAKE_INTERPROCEDURAL_OPTIMIZATION": true
+            },
+            "hidden": true
+        },
+        {"name": "Debug-x64", "description": "Debug for x64", "inherits": ["base", "Debug", "x64"]},
+        {"name": "Debug-x86", "description": "Debug for x64", "inherits": ["base", "Debug", "x86"]},
+        {"name": "Release-x64", "description": "Debug for x64", "inherits": ["base", "Release", "x64"]},
+        {"name": "Release-x86", "description": "Debug for x64", "inherits": ["base", "Release", "x86"]}
+    ]
+}
