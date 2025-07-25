@@ -1,8 +1,3 @@
 {
-  "name": "futila",
-  "dependencies": [
-    "box2d",
-    "sdl2",
-    "skia"
-  ]
+  "name": "futila"
 }
