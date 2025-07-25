@@ -3,14 +3,6 @@
   "dependencies": [
     "box2d",
     "sdl2",
-    {
-      "name": "skia",
-      "features": [
-        "harfbuzz",
-        "fontconfig",
-        "freetype",
-        "vulkan"
-      ]
-    }
+    "skia"
   ]
 }

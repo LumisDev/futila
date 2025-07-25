@@ -1,4 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 project(futila)
-
+find_package(box2d CONFIG REQUIRED)
+find_package(SDL2 CONFIG REQUIRED)
+find_package(unofficial-skia CONFIG REQUIRED)
 add_executable(futila src/main.cpp)
+target_link_libraries(futila PRIVATE box2d::box2d $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main> $<IF:$<TARGET_EXISTS:SDL2::SDL2>,SDL2::SDL2,SDL2::SDL2-static> unofficial::skia::skia)
